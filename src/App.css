@@ -1,0 +1,91 @@
+/* Home component */
+
+.main_div{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(33, 194, 28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_div{
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    flex-direction: column;
+}
+
+.search_bar_box{
+    display: flex;
+}
+
+.search_bar{
+    width: 300px;
+    height: 60px;
+    border: none;
+    outline: none;
+    padding: 20px;
+    border-radius: 20px 0 0 20px;
+}
+
+.search_button{
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 0 5px 5px 0;
+}
+
+.search_button:hover{
+    cursor: pointer;
+    background-color: rgb(99, 201, 99);
+}
+
+.search_button:active{
+    background-color: rgba(99, 201, 99, 0.73);
+}
+
+/* Navbar component */
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: green;
+    padding: 20px;
+}
+
+.button_to_home{
+    width: 60px;
+    background-color: green;
+    border: none;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.button_to_home:hover {
+    cursor: pointer;
+    border: 1px solid gray;
+}
+
+/* Card component */
+
+.card{
+    width: 330px;
+    height: 450px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-top: 10px;
+}
+
+
+
+
