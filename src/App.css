@@ -3,20 +3,44 @@
 .main_div{
     width: 100vw;
     height: 100vh;
-    background-color: rgb(33, 194, 28);
+    /* background-color: rgb(33, 194, 28); */
+    background-image: url('../public/home_background_blurred.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: first baseline;
+    flex-direction: column;
 }
 
 .home_div{
-    width: 500px;
-    height: 500px;
-    background-color: red;
+    width: 100%;
+    height: 60vh;
+    /* background-color: rgb(1, 169, 9); */
     display: flex;
     align-items: center;
     justify-content:space-evenly;
     flex-direction: column;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.home_div h1{
+    font-size: 4rem;
+    /* text-shadow: 2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, -2px -2px 0 #000000, 2px 0px 0 #000000, 0px 2px 0 #000000, -2px 0px 0 #000000, 0px -2px 0 #000000; */
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+}
+
+.home_div span{
+    color: rgb(0, 255, 0);
+}
+
+.home_div h3{
+    color: wheat;
+    font-size: 1.6rem;
+    font-style: italic;
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+
 }
 
 .search_bar_box{
@@ -24,13 +48,19 @@
 }
 
 .search_bar{
-    width: 300px;
+    width: 400px;
     height: 60px;
     border: none;
     outline: none;
     padding: 20px;
     border-radius: 20px 0 0 20px;
+    font-size: 18px;
 }
+
+.search_bar::placeholder{
+    font-size: 18px;
+}
+
 
 .search_button{
     width: 60px;
@@ -48,6 +78,57 @@
 
 .search_button:active{
     background-color: rgba(99, 201, 99, 0.73);
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.carousel_container{
+    width: 100%;
+    height: 40vh;
+    background-color: rgb(255, 214, 139);
+    overflow: hidden;
+    padding: 10px;
+    white-space: nowrap;
+    position: relative;
+    padding: 25px 0 0 0;
+}
+
+.carousel_container::before, .carousel_container::after{
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.carousel_container::before{  
+    left: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0) 0%, rgb(255, 236, 198) 100%);
+}
+
+.carousel_container::after{
+    right: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgb(255, 236, 198) 100%);
+}
+
+.carousel_slider{
+    display: inline-block;
+    animation: 1000s slide infinite linear;
+}
+
+
+.carousel_image{
+    height: 33vh;
+    margin: 0 7px;
+    border-radius: 50px;
 }
 
 /* Navbar component */
