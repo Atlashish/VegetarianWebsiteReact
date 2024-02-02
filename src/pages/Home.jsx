@@ -19,7 +19,7 @@ export default function Home() {
 
   async function handleClick() {
     try {
-      if (search.trim() !== '') {
+      if (search.trim() !== '' ) {
         const response = await axios.get(
           `https://api.spoonacular.com/recipes/complexSearch`,
           {
@@ -36,7 +36,7 @@ export default function Home() {
         console.log(results)
         setResultsArray(results)
 
-        navigate('/results', { state: { results } });
+        navigate(`/results/${search}`, { state: { results } });
       } else {
         alert('Write something');
       }
