@@ -1,14 +1,15 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setDescriptionResults, selectResultsArray, selectApiKey } from '../redux/slice';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 
 export default function Results() {
-  const location = useLocation();
-  const results = location.state.results;
-  const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
+  const results = useSelector(selectResultsArray);
+  const apiKey = useSelector(selectApiKey);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
     async function handleClick(id) {
@@ -22,10 +23,8 @@ export default function Results() {
           }
         );
 
-        const results = response.data
-        console.log(results);
-
-        navigate(`/description/${id}`, { state: { results } });
+        dispatch(setDescriptionResults(response.data))
+        navigate(`/description/${id}`);
       } catch (error) {
         console.error('Error fetching data:', error.message);
     }}

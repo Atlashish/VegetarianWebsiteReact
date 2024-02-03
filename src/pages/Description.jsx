@@ -1,10 +1,9 @@
-import react from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector} from 'react-redux';
+import { selectDescriptionResults } from '../redux/slice';
 import Navbar from '../components/Navbar';
 
 export default function Description(){
-    const location = useLocation();
-    const results = location.state.results;
+    const results = useSelector(selectDescriptionResults);
 
     console.log(results)
 

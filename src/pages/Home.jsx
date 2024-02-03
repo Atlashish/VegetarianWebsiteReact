@@ -1,25 +1,48 @@
-import axios from 'axios'
-import React from 'react'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey } from '../redux/slice';
+import axios from 'axios';
 import testData from '../testData.json'
 
-const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
-
-
 export default function Home() {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search, setSearch] = React.useState("")
-  const [resultsArray, setResultsArray] = React.useState([])
-  const [carouselImages, setCarouselImages] = React.useState([])
+  const search = useSelector(selectSearch);
+  const carouselImages = useSelector(selectCarouselImages);
+  const apiKey = useSelector(selectApiKey);
+
+  // useEffect(() => {
+  //   async function fetchCarouselImages() {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://api.spoonacular.com/recipes/complexSearch`,
+  //         {
+  //           params: {
+  //             apiKey: apiKey,
+  //             number: 100,
+  //           },
+  //         }
+  //       );
+
+  //       const carouselResults = response.data.results;
+  //       dispatch(setCarouselImages(carouselResults));
+  //     } catch (error) {
+  //       console.error('Error fetching carousel images:', error.message);
+  //     }
+  //   }
+
+  //   fetchCarouselImages();
+
+  // }, [apiKey, dispatch]);
 
   function handleChange(event) {
-    setSearch(event.target.value)
+    dispatch(setSearch(event.target.value));
   }
 
   async function handleClick() {
     try {
-      if (search.trim() !== '' ) {
+      if (search.trim() !== '') {
         const response = await axios.get(
           `https://api.spoonacular.com/recipes/complexSearch`,
           {
@@ -31,12 +54,11 @@ export default function Home() {
           }
         );
 
-
         const results = response.data.results;
-        console.log(results)
-        setResultsArray(results)
+        console.log(results);
+        dispatch(setResultsArray(results));
 
-        navigate(`/results/${search}`, { state: { results } });
+        navigate(`/results/${search}`);
       } else {
         alert('Write something');
       }
@@ -45,62 +67,34 @@ export default function Home() {
     }
   }
 
-  // React.useEffect(() => {
-  //   async function fetchCarouselImages() {
-  //     try {
-  //       const response = await axios.get(
-  //         `https://api.spoonacular.com/recipes/complexSearch`,
-  //         {
-  //           params: {
-  //             apiKey: apiKey,
-  //             number: 100
-  //           },
-  //         }
-  //       );
-
-  //       const carouselResults = response.data.results
-  //       setCarouselImages(carouselResults)
-
-  //       console.log(carouselResults)
-
-
-
-  //     } catch (error) {
-  //       console.error('Error fetching carousel images:', error.message);
-  //     }
-  //   }
-
-  //   fetchCarouselImages();
-
-  // }, []);
-
-
-
   return (
     <div className='main_div'>
       <div className='home_div'>
-        <h1>Search your  <span>Veggie</span> recipes!📖</h1>
+        <h1>
+          Search your <span>Veggie</span> recipes!📖
+        </h1>
         <div className='search_bar_box'>
-
-          <input className='search_bar'
+          <input
+            className='search_bar'
             name='search_recipe'
-            type="text"
+            type='text'
             placeholder='Search...'
             value={search}
-            onChange={handleChange} />
-
-          <button className='search_button'
-            onClick={handleClick}>🔎</button>
+            onChange={handleChange}
+          />
+          <button className='search_button' onClick={handleClick}>
+            🔎
+          </button>
         </div>
         <h3>Over 1000+ of recipes to choose from</h3>
       </div>
       <div className='carousel_container'>
-        <div className='carousel_slider' >
+        <div className='carousel_slider'>
           {testData.results.map((item) => (
-              <img key={item.id} className='carousel_image'  src={item.image} alt={item.title}/>
+            <img key={item.id} className='carousel_image' src={item.image} alt={item.title} />
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }

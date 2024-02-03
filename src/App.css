@@ -4,7 +4,7 @@
     width: 100vw;
     height: 100vh;
     /* background-color: rgb(33, 194, 28); */
-    background-image: url('../public/home_background_blurred.jpg');
+    background-image: url('../home_background_blurred.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -111,12 +111,12 @@
 
 .carousel_container::before {
     left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0) 80%, rgb(200, 200, 200) 100%);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 50%, rgb(255, 208, 155) 100%);
 }
 
 .carousel_container::after {
     right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 80%, rgb(200, 200, 200) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgb(255, 208, 155) 100%);
 }
 
 .carousel_slider {
@@ -128,9 +128,9 @@
 .carousel_image {
     height: 33vh;
     margin: 0 7px;
-    /* border-radius: 50px; */
-    -webkit-box-shadow: 0px 0px 0px 3px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-    box-shadow: 0px 0px 0px 3px #10ef2e, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    border-radius: 50px;
 }
 
 /* Navbar component */
@@ -142,7 +142,7 @@
     padding: 20px;
 }
 
-.button_to_go_back{
+.button_to_go_back {
     width: 60px;
     background-color: green;
     border: none;
@@ -179,7 +179,7 @@
     text-align: center;
 }
 
-.card_container img{
+.card_container img {
     width: 300px;
     height: 200px;
 }
@@ -190,7 +190,7 @@
 
 /* Results component */
 
-.results_container{
+.results_container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
@@ -199,6 +199,6 @@
 
 /* Description component  */
 
-.description_container{
+.description_container {
     text-align: center;
 }
