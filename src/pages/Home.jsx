@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey } from '../redux/slice';
 import axios from 'axios';
-import testData from '../testData.json'
+import testData from '../testData.json';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ export default function Home() {
         console.log(results);
         dispatch(setResultsArray(results));
 
-        navigate(`/results/${search}`);
+        navigate(`/results/${encodeURIComponent(search)}`);
       } else {
         alert('Write something');
       }
@@ -81,6 +81,11 @@ export default function Home() {
             placeholder='Search...'
             value={search}
             onChange={handleChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                handleClick();
+              }
+            }}
           />
           <button className='search_button' onClick={handleClick}>
             🔎

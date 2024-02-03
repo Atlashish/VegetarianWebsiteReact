@@ -1,11 +1,36 @@
-import { useSelector} from 'react-redux';
-import { selectDescriptionResults } from '../redux/slice';
+import { useEffect } from 'react'; 
+import { useSelector, useDispatch} from 'react-redux';
+import { selectDescriptionResults, selectApiKey, setResultsArray, setDescriptionId, setDescriptionResults } from '../redux/slice';
 import Navbar from '../components/Navbar';
+import axios from 'axios';
 
 export default function Description(){
     const results = useSelector(selectDescriptionResults);
+    const apiKey = useSelector(selectApiKey);
+    const dispatch = useDispatch();
 
-    console.log(results)
+    useEffect(()=>{
+        async function fetchDescription() {
+            try {
+              const id = decodeURIComponent(location.pathname.split('/description/')[1]);
+              const response = await axios.get (
+                `https://api.spoonacular.com/recipes/${id}/information`,
+                {
+                  params: {
+                    apiKey: apiKey,
+                  },
+                }
+              );
+
+              const results = response.data;
+              dispatch(setDescriptionResults(results))
+            } catch (error) {
+              console.error('Error fetching data:', error.message);
+          }}
+
+        fetchDescription()
+    },[apiKey, dispatch])
+    
 
     const convertHtmlString = (htmlString) => {
         return { __html: htmlString };
