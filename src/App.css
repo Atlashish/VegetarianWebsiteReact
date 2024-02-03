@@ -137,6 +137,7 @@
     align-items: center;
     background-color: green;
     padding: 20px;
+    height: 70px;
 }
 
 .navbar span{
@@ -252,5 +253,11 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 /* Description component  */
 
 .description_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    width:  85%;
+    margin: auto;
 }
