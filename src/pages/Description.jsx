@@ -8,31 +8,32 @@ export default function Description() {
   const results = useSelector(selectDescriptionResults);
   const apiKey = useSelector(selectApiKey);
   const dispatch = useDispatch();
+  window.scrollTo(0, 0);
 
-  useEffect(() => {
-    async function fetchDescription() {
-      try {
-        const id = decodeURIComponent(location.pathname.split('/description/')[1]);
-        const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${id}/information`,
-          {
-            params: {
-              apiKey: apiKey,
-            },
-          }
-        );
+  // useEffect(() => {
+  //   async function fetchDescription() {
+  //     try {
+  //       const id = decodeURIComponent(location.pathname.split('/description/')[1]);
+  //       const response = await axios.get(
+  //         `https://api.spoonacular.com/recipes/${id}/information`,
+  //         {
+  //           params: {
+  //             apiKey: apiKey,
+  //           },
+  //         }
+  //       );
 
 
-        const results = response.data;
-        dispatch(setDescriptionResults(results))
-        console.log(results)
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    }
+  //       const results = response.data;
+  //       dispatch(setDescriptionResults(results))
+  //       console.log(results)
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error.message);
+  //     }
+  //   }
 
-    fetchDescription()
-  }, [apiKey, dispatch])
+  //   fetchDescription()
+  // }, [apiKey, dispatch])
 
 
   const convertHtmlString = (htmlString) => {
@@ -42,29 +43,50 @@ export default function Description() {
   return (
     <div>
       <Navbar />
-      <div className='description_container'>
-        <div className='left_container'>
-          <img src={results.image} alt={results.title} />
-        </div>
-        <div className='right_container'>
-          <div className='title_container'>
-            <h1>{results.title}</h1>
+      <div className='main_container'>
+        <div className='description_container'>
+          <div className='description_image'>
+            <img src={results.image} alt={results.title} />
+          </div>
+          <div className='description_text'>
+            <h1>～{results.title}～
+              <span style={{
+                fontSize: '1.3rem',
+                fontWeight: 'normal',
+                fontStyle: 'italic'
+              }}>
+                (Ready in {results.readyInMinutes} minutes)
+              </span>
+              {results.vegetarian &&<img src="../vegetarian-icon.png" alt="vegetarian-icon" style={{ width: '2.1rem', marginLeft: '0.5rem' }} />} 
+              {results.vegan &&<img src="../vegan-icon.png" alt="vegetarian-icon" style={{ width: '2.1rem', marginLeft: '0.5rem' }} />}
+              {results.veryHealthy &&<img src="../heart-care-icon.png" alt="vegetarian-icon" style={{ width: '2.1rem', marginLeft: '0.5rem' }} /> }
+              {results.sustainable &&<img src="../environment-icon.png" alt="vegetarian-icon" style={{ width: '2.1rem', marginLeft: '0.5rem' }} /> }
+              {results.glutenFree &&<img src="../gluten-free-icon.png" alt="vegetarian-icon" style={{ width: '2.1rem', marginLeft: '0.5rem' }} /> }
+            </h1>
+            <br />
             <p dangerouslySetInnerHTML={convertHtmlString(results.summary)}></p>
           </div>
-          <div className='ingredients_container'>
-            <ul>
-              {results.extendedIngredients &&
-                results.extendedIngredients.map((item) => (
-                  <li key={item.id}>{item.aisle && `${item.aisle}:`} {item.original}</li>
-                ))}
-            </ul>
-          </div>
         </div>
+        <hr className='horizontal_line' />
+        <br />
+        <div className='description_ingredients'>
+          <h2>INGREDIENTS</h2>
+          <ol>
+            {results.extendedIngredients &&
+              results.extendedIngredients.map((item) => (
+                <li className='list_ingredients' key={item.id}> <strong>{item.aisle && `${item.aisle}:`}</strong>  {item.original}</li>
+              ))}
+            <br />
+          </ol>
+        </div>
+        <hr className='horizontal_line' />
+        <br />
+        <div className='description_instructions'>
+          <h2>INSTRUCTIONS</h2>
+          <p dangerouslySetInnerHTML={convertHtmlString(results.instructions)}></p>
+        </div>
+        <br />
       </div>
-
-      <br />
-      <p dangerouslySetInnerHTML={convertHtmlString(results.instructions)}></p>
-
     </div>
   )
 }

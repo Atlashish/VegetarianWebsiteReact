@@ -20,6 +20,7 @@ export default function Home() {
   //         {
   //           params: {
   //             apiKey: apiKey,
+  //             diet: 'vegeta
   //             number: 100,
   //           },
   //         }
@@ -48,6 +49,7 @@ export default function Home() {
           {
             params: {
               apiKey: apiKey,
+              diet: 'vegetarian',
               query: search,
               number: 40,
             },

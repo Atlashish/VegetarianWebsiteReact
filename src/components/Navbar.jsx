@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey } from '../redux/slice';
+import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey, clearDescriptionResults } from '../redux/slice';
 export default function Navbar(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export default function Navbar(){
               {
                 params: {
                   apiKey: apiKey,
+                  diet: 'vegetarian',
                   query: search,
                   number: 40,
                 },
@@ -40,33 +41,17 @@ export default function Navbar(){
         }
       }
 
-//    async function randomRecipe(){
-//     try{
-//         const response = axios.get(
-//             'https://api.spoonacular.com/recipes/random',
-//             {
-//                 params: {
-//                     apiKey: apiKey,
-//                     number: 1
-//                 }
-//             }
-//         )
+      function goBack(){
+        dispatch(clearDescriptionResults());
+        navigate(-1);
 
-//         const results = response.data;
-//         dispatch(setResultsArray(results))
-        
-//         navigate('/results/random');
-
-//     } catch(error){
-//         console.error('Error fetching data:', error.message);
-//     }
-//    }
+      }
 
 
     return (
         <nav className='navbar'>
             <button className='button_navbar' 
-            onClick={() => navigate(-1)}>
+            onClick={goBack}>
               <span> ◀ Go Back</span>
               </button>
             <div className='search_bar_box_navbar'>

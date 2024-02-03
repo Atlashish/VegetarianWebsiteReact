@@ -26,6 +26,7 @@ export default function Results() {
           {
             params: {
               apiKey: apiKey,
+              diet: 'vegetarian',
               query: initialSearch,  // Query vuota per ottenere risultati iniziali
               number: 40,
             },

@@ -252,12 +252,67 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 
 /* Description component  */
 
+.main_container{
+    text-align: center;
+}
+
 .description_container {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    text-align: center;
     width:  85%;
     margin: auto;
+    padding: 20px;
+}
+
+.description_container img{
+    width: 500px;
+    border-radius: 50px;
+}
+
+.description_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 600px;
+    padding: 50px;
+}
+
+.horizontal_line{
+    width: 75%;
+    margin: auto;
+}
+
+.description_ingredients{
+    width: 50%;
+    margin: auto;
+}
+
+.description_ingredients h2{
+    margin-bottom: 10px;
+}
+
+.description_ingredients li{
+    text-align: left;
+}
+
+.list_ingredients{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.description_instructions{
+    width: 70%;
+    margin: auto;
+}
+
+.description_instructions h2{
+    margin-bottom: 10px;
+}
+
+.description_instructions p{
+    text-align: left;
+    font-size: 18px;
 }
