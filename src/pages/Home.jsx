@@ -73,7 +73,7 @@ export default function Home() {
     <div className='main_div'>
       <div className='home_div'>
         <h1>
-          Search your <span>Veggie</span> recipes!📖
+          Search your <span>Vegetarian</span> recipes!📖
         </h1>
         <div className='search_bar_box'>
           <input
