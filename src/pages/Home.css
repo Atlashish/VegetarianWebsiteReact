@@ -85,10 +85,25 @@
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 .filters_box h4{
     margin-right: 10px;
+}
+
+.filters{
+    background-color: rgb(45, 115, 45);
+    border: none;
+    border-radius: 5px 10px 5px 10px;
+    padding: 5px;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
+.filters:hover{
+    cursor: pointer;
 }
 
 

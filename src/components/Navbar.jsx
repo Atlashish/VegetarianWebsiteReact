@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearch, setResultsArray, selectSearch, selectApiKey, clearDescriptionResults } from '../redux/slice';
+import { selectSelectedParam, setSearch, setResultsArray, selectSearch, selectApiKey, clearDescriptionResults } from '../redux/slice';
 import './Navbar.css'
 
 export default function Navbar(){
@@ -9,6 +9,7 @@ export default function Navbar(){
     const dispatch = useDispatch();
     const apiKey = useSelector(selectApiKey);
     const search = useSelector(selectSearch);
+    const selectedParam = useSelector(selectSelectedParam);
 
     function handleChange(event) {
         dispatch(setSearch(event.target.value));
@@ -23,7 +24,7 @@ export default function Navbar(){
                 params: {
                   apiKey: apiKey,
                   diet: 'vegetarian',
-                  query: search,
+                  [selectedParam]: search,
                   number: 40,
                 },
               }

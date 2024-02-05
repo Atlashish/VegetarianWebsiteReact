@@ -4,6 +4,7 @@ export const appSlice = createSlice({
     name: 'app',
     initialState: {
         search: '',
+        selectedParam: 'query',
         resultsArray: [],
         carouselImages: [],
         apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -15,6 +16,11 @@ export const appSlice = createSlice({
         setSearch: (state, action) => {
             state.search = action.payload
         },
+
+        setSelectedParam: (state, action) => {
+            state.selectedParam = action.payload
+        },
+
         setResultsArray: (state, action) => {
             state.resultsArray = action.payload
         },
@@ -40,9 +46,10 @@ export const appSlice = createSlice({
     },
 });
 
-export const { setSearch, setResultsArray, setCarouselImages, setDescriptionResults, setDescriptionId, clearDescriptionResults, setOffset } = appSlice.actions;
+export const { setSearch, setSelectedParam, setResultsArray, setCarouselImages, setDescriptionResults, setDescriptionId, clearDescriptionResults, setOffset } = appSlice.actions;
 
 export const selectSearch = (state) => state.app.search;
+export const selectSelectedParam = (state) => state.app.selectedParam;
 export const selectResultsArray = (state) => state.app.resultsArray;
 export const selectCarouselImages = (state) => state.app.carouselImages;
 export const selectApiKey = (state) => state.app.apiKey;

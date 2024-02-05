@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectResultsArray, setDescriptionId, selectApiKey, setSearch, setResultsArray, selectOffset, setOffset} from '../redux/slice';
+import { selectSelectedParam,selectResultsArray, setDescriptionId, selectApiKey, setSearch, setResultsArray, selectOffset, setOffset} from '../redux/slice';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
@@ -9,6 +9,7 @@ import './Results.css'
 
 export default function Results() {
   const results = useSelector(selectResultsArray);
+  const selectedParam = useSelector(selectSelectedParam);
   const apiKey = useSelector(selectApiKey);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function Results() {
             params: {
               apiKey: apiKey,
               diet: 'vegetarian',
-              query: initialSearch,  // Query vuota per ottenere risultati iniziali
+              [selectedParam]: initialSearch,  // Query vuota per ottenere risultati iniziali
               number: 40,
             },
           }
@@ -42,7 +43,7 @@ export default function Results() {
     }
 
     fetchInitialResults(); // Esegui la ricerca iniziale all'avvio del componente
-  }, [apiKey, dispatch]);
+  }, [apiKey, dispatch, selectedParam]);
 
   async function handleClick(id) {
     dispatch(setDescriptionId(id))
