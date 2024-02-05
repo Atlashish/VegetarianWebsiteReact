@@ -1,8 +1,7 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey, clearDescriptionResults } from '../redux/slice';
+import { setSearch, setResultsArray, selectSearch, selectApiKey, clearDescriptionResults } from '../redux/slice';
 import './Navbar.css'
 
 export default function Navbar(){

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setDescriptionResults, selectResultsArray, setDescriptionId, selectApiKey, setSearch, setResultsArray} from '../redux/slice';
+import { selectResultsArray, setDescriptionId, selectApiKey, setSearch, setResultsArray, selectOffset, setOffset} from '../redux/slice';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
@@ -12,7 +12,7 @@ export default function Results() {
   const apiKey = useSelector(selectApiKey);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const offset = useSelector(selectOffset);
 
   useEffect(() => {
     // Funzione per eseguire la ricerca iniziale all'avvio del componente
@@ -49,24 +49,52 @@ export default function Results() {
     navigate(`/description/${encodeURIComponent(id)}`);
   }
 
+  async function newResults() {
+    try {
+      const response = await axios.get(
+        'https://api.spoonacular.com/recipes/complexSearch',
+        {
+          params: {
+            apiKey: apiKey,
+            diet: 'vegetarian',
+            number: 40,
+            offset: offset, 
+          },
+        }
+      );
+  
+      const additionalResults = response.data.results;
+      dispatch(setResultsArray([...results, ...additionalResults]));
+      dispatch((prev) => setOffset(prev + 40));
+    } catch (error) {
+      console.error('Error fetching additional results:', error.message);
+    }
+  }
+
   return (
     <div>
       <Navbar />
       <div className='results_container'>
-        {results && results.map((result) => (
-          <div
-            style={{ cursor: 'pointer' }}
-            onClick={() => handleClick(result.id)}
-            key={result.id}
-          >
-            <Card
-              title={result.title}
-              image={result.image}
-              alt={result.title}
-            />
-          </div>
-        ))}
-        {!results && alert('No results')}
+        {results && results.length > 0 ? (
+          results.map((result) => (
+            <div
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleClick(result.id)}
+              key={result.id}
+            >
+              <Card
+                title={result.title}
+                image={result.image}
+                alt={result.title}
+              />
+            </div>
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
+      </div>
+      <div  className='load_more' >
+      {results && results.length > 0 && results.length >= 40 && <button onClick={newResults}>Load More</button>}
       </div>
     </div>
   );

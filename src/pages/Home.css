@@ -80,6 +80,17 @@
     background-color: rgba(99, 201, 99, 0.73);
 }
 
+.filters_box{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.filters_box h4{
+    margin-right: 10px;
+}
+
 
 @keyframes slide {
     from {

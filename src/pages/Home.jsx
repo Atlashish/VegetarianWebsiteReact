@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey } from '../redux/slice';
 import axios from 'axios';
-import testData from '../testData.json';
 import './Home.css'
 
 export default function Home() {
@@ -13,30 +12,30 @@ export default function Home() {
   const carouselImages = useSelector(selectCarouselImages);
   const apiKey = useSelector(selectApiKey);
 
-  // useEffect(() => {
-  //   async function fetchCarouselImages() {
-  //     try {
-  //       const response = await axios.get(
-  //         `https://api.spoonacular.com/recipes/complexSearch`,
-  //         {
-  //           params: {
-  //             apiKey: apiKey,
-  //             diet: 'vegeta
-  //             number: 100,
-  //           },
-  //         }
-  //       );
+  useEffect(() => {
+    async function fetchCarouselImages() {
+      try {
+        const response = await axios.get(
+          `https://api.spoonacular.com/recipes/complexSearch`,
+          {
+            params: {
+              apiKey: apiKey,
+              diet: 'vegetarian',
+              number: 100,
+            },
+          }
+        );
 
-  //       const carouselResults = response.data.results;
-  //       dispatch(setCarouselImages(carouselResults));
-  //     } catch (error) {
-  //       console.error('Error fetching carousel images:', error.message);
-  //     }
-  //   }
+        const carouselResults = response.data.results;
+        dispatch(setCarouselImages(carouselResults));
+      } catch (error) {
+        console.error('Error fetching carousel images:', error.message);
+      }
+    }
 
-  //   fetchCarouselImages();
+    fetchCarouselImages();
 
-  // }, [apiKey, dispatch]);
+  }, [apiKey, dispatch]);
 
   function handleChange(event) {
     dispatch(setSearch(event.target.value));
@@ -96,7 +95,7 @@ export default function Home() {
       </div>
       <div className='carousel_container'>
         <div className='carousel_slider'>
-          {testData.results.map((item) => (
+          {carouselImages.map((item) => (
             <img key={item.id} className='carousel_image' src={item.image} alt={item.title} />
           ))}
         </div>

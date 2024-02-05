@@ -5,6 +5,33 @@
     padding: 20px;
 }
 
+.load_more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   padding: 20px ;
+}
+
+.load_more button{
+    padding: 10px;
+    background-color: rgb(99, 201, 99);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.load_more button:hover{
+    background-color: rgb(75, 168, 75);
+}
+
+.load_more button:active{
+    background-color: rgb(48, 109, 48);
+}
+
+
+
 @media screen and (max-width: 1200px) {
     .results_container {
         grid-template-columns: repeat(3, 1fr);

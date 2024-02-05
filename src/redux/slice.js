@@ -9,6 +9,7 @@ export const appSlice = createSlice({
         apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
         descriptionResults: '',
         descriptionId: '',
+        offsets: '',
     },
     reducers: {
         setSearch: (state, action) => {
@@ -30,12 +31,16 @@ export const appSlice = createSlice({
         clearDescriptionResults: (state) => {
             state.descriptionResults = '';
             state.descriptionId = '';
-          },
+        },
+
+        setOffset: (state, action) => {
+            state.offset = action.payload
+        },
 
     },
 });
 
-export const { setSearch, setResultsArray, setCarouselImages, setDescriptionResults, setDescriptionId, clearDescriptionResults } = appSlice.actions;
+export const { setSearch, setResultsArray, setCarouselImages, setDescriptionResults, setDescriptionId, clearDescriptionResults, setOffset } = appSlice.actions;
 
 export const selectSearch = (state) => state.app.search;
 export const selectResultsArray = (state) => state.app.resultsArray;
@@ -43,6 +48,7 @@ export const selectCarouselImages = (state) => state.app.carouselImages;
 export const selectApiKey = (state) => state.app.apiKey;
 export const selectDescriptionResults = (state) => state.app.descriptionResults;
 export const selectDescriptionId = (state) => state.app.descriptionId;
+export const selectOffset = (state) => state.app.offset;
 
 
 
