@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import './Results.css'
 
 export default function Results() {
   const results = useSelector(selectResultsArray);

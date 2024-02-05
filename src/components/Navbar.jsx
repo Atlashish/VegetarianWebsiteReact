@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey, clearDescriptionResults } from '../redux/slice';
+import './Navbar.css'
+
 export default function Navbar(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -33,8 +35,6 @@ export default function Navbar(){
             dispatch(setResultsArray(results));
     
             navigate(`/results/${search}`);
-          } else {
-            alert('Write something');
           }
         } catch (error) {
           console.error('Error fetching data:', error.message);

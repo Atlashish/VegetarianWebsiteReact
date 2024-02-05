@@ -1,0 +1,175 @@
+/* Home component */
+.main_div {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../home_background_blurred.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+    flex-direction: column;
+}
+
+.home_div {
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.home_div h1 {
+    font-size: 4rem;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+.home_div span {
+    color: rgb(0, 255, 0);
+}
+
+.home_div h3 {
+    color: wheat;
+    font-size: 1.6rem;
+    font-style: italic;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
+
+}
+
+.search_bar_box {
+    display: flex;
+}
+
+.search_bar {
+    width: 400px;
+    height: 60px;
+    border: none;
+    outline: none;
+    padding: 20px;
+    border-radius: 5px 0 0 15px;
+    font-size: 18px;
+}
+
+.search_bar::placeholder {
+    font-size: 18px;
+}
+
+.search_bar:focus{
+    border: 1px solid black;
+}
+
+
+.search_button {
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 0 15px 5px 0;
+}
+
+.search_button:hover {
+    cursor: pointer;
+    background-color: rgb(99, 201, 99);
+}
+
+.search_button:active {
+    background-color: rgba(99, 201, 99, 0.73);
+}
+
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.carousel_container {
+    width: 100%;
+    height: 35vh;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 8px 0 0 0;
+}
+
+.carousel_container::before,
+.carousel_container::after {
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.carousel_container::before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 50%, rgb(255, 208, 155) 150%);
+}
+
+.carousel_container::after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgb(255, 208, 155) 150%);
+}
+
+.carousel_slider {
+    display: inline-block;
+    animation: 1000s slide infinite linear;
+}
+
+.carousel_image {
+    height: 33vh;
+    margin: 0 7px;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    border-radius: 50px;
+}
+
+@media screen and (max-width: 600px) {
+
+ .home_div{
+    height: 75vh;
+ }
+
+    .home_div h1{
+        font-size: 2.8rem;
+    }
+
+    .home_div h3{
+        font-size: 1.3rem;
+    }
+
+    .search_bar{
+        width: 300px;
+    }
+
+    .carousel_container {
+        width: 100%;
+        height: 25vh;
+    }
+
+    .carousel_image {
+        height: 23vh;
+        margin: 0 7px;
+        -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+        box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+        border-radius: 50px;
+    }
+
+    .carousel_container::before {
+        background: linear-gradient(to left, rgba(255, 255, 255, 0) 70%, rgb(255, 208, 155) 150%);
+    }
+    
+    .carousel_container::after {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 70%, rgb(255, 208, 155) 150%);
+    }
+    
+}

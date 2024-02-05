@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setSearch, setCarouselImages, setResultsArray, selectSearch, selectCarouselImages, selectApiKey } from '../redux/slice';
 import axios from 'axios';
 import testData from '../testData.json';
+import './Home.css'
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -61,9 +62,7 @@ export default function Home() {
         dispatch(setResultsArray(results));
 
         navigate(`/results/${encodeURIComponent(search)}`);
-      } else {
-        alert('Write something');
-      }
+      } 
     } catch (error) {
       console.error('Error fetching data:', error.message);
     }
