@@ -8,7 +8,6 @@ export default function App() {
   return (
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/results/random" element={<Results />} /> */}
         <Route path="/results/:search" element={<Results />} />   
         <Route path="/description/:id" element={<Description />}></Route>
       </Routes>
