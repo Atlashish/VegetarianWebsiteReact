@@ -181,6 +181,10 @@
         width: 200px;
     }
 
+    .filters{
+        font-size: 10px;
+}
+
     .carousel_container {
         width: 100%;
         height: 25vh;
